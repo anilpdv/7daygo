@@ -3,7 +3,7 @@ package main
 import (
 	"net/http"
 
-	"gee"
+	"7daygo/day3-dynamicrouting/gee"
 )
 
 func main() {
@@ -16,6 +16,10 @@ func main() {
 	r.GET("/hello", func(c *gee.Context) {
 		// expect /hello?name=geektutu
 		c.String(http.StatusOK, "hello %s,you're at %s\n", c.Query("name"), c.Path)
+	})
+
+	r.GET("/hello/:name", func(c *gee.Context) {
+		c.String(http.StatusOK, "hello %s, your are at %s\n", c.Param("name"), c.Path)
 	})
 
 	r.POST("/login", func(c *gee.Context) {

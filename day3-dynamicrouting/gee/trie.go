@@ -1,7 +1,7 @@
 package gee
 
 import (
-	"log"
+	"fmt"
 	"strings"
 )
 
@@ -16,6 +16,7 @@ type node struct {
 func (n *node) matchChild(part string) *node {
 	for _, child := range n.children {
 		if child.part == part || child.isWild {
+			fmt.Println("matchChild", child)
 			return child
 		}
 	}
@@ -38,8 +39,7 @@ func (n *node) insert(pattern string, parts []string, height int) {
 		return
 	}
 
-	log.Println(height, pattern)
-
+	fmt.Println("node.insert", pattern, parts, height)
 	part := parts[height]
 	child := n.matchChild(part)
 
